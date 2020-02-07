@@ -26,13 +26,8 @@
       animation-timing-function: ease-in
       &_open
         right: 0
-        transition-duration: 0.2s, 0.2s
-        transition-delay: 0.2s, 0s
       &_close
         right: -264px
-        transition-duration: 0.2s, 0.2s
-        transition-delay: 0.2s, 0s
-
       span
         font-weight: normal
         font-size: 24px
@@ -86,86 +81,20 @@
       border-radius: 8px
       font-weight: 500
       font-size: 22px
+      background: #1B2126
       &_active
-        background: #FF6363
-        color: #F9F9F9
+        color: #C3D9DF
+        border: 1px solid #00E5FF
       &_disable
-        background: #FFF
-        border: 0.5px solid #666666
-        color: #333333
+        border: 1px solid #67757A
+        color: #C3D9DF
     &-button:first-child
       margin-right: 16px
-  &__table
+  &__week
     display: flex
+    color: #D6EEF4
     flex-direction: column
-    width: 100%
-    margin-top: 12px
-    position: relative
-    &-day
-      margin-left: 16px
-      flex-direction: row
-      display: flex
-      position: relative
 
-.table-day
-  &__lesson
-    min-width: 296px
-    width: calc(100% - 8px)
-    height: 100px
-    background: #FFB672
-    border-radius: 8px
-    display: flex
-    align-items: center
-    margin-bottom: 3px
-    margin-right: 0
-  &__lessons
-    width: 100%
-    // display: flex
-    flex-direction: column
-  &__name
-    width: 40px
-    height: 512px
-    background: #254D71
-    border-radius: 16px 0px 0px 16px
-    display: flex
-    margin-left: auto
-    span
-      font-weight: 500
-      font-size: 21px
-      color: #F9F9F9
-      transform: rotate(90deg)
-      display: flex
-      align-items: center
-      width: 40px
-
-.lesson
-  &__time
-    width: 64px
-    height: 40px
-    background: #FFE3C9
-    border-radius: 4px
-    font-weight: 500
-    font-size: 21px
-    color: #333333
-    display: flex
-    justify-content: center
-    align-items: center
-    margin-left: 8px
-    margin-right: 8px
-  &__content
-    min-width: 196px
-    width: calc(100% - 101px)
-    height: 76px
-    background: #FFE3C9
-    border-radius: 4px
-    font-weight: normal
-    font-size: 13px
-    color: #333333
-    display: flex
-    align-items: center
-    padding: 0 6px
-    text-align: center
-    overflow: hidden
 
 .returning-header
   height: 48px
@@ -174,6 +103,7 @@
   justify-content: center
   align-items: center
   position: relative
+  background: #232B32
   &__arrow
     position: absolute
     left: 8px
@@ -194,3 +124,122 @@
     left: -20px
     top: -12px
     border-radius: 1px
+
+
+.day
+  margin-top: 16px
+  height: 503px
+  width: 100%
+  // background: #cccccc
+  position: relative
+  overflow: hidden
+  &__title
+    border: 1px solid #67757A
+    border-radius: 0px 24px 24px 0px
+    display: flex
+    width: 189px
+    height: 41px
+    align-items: center
+    justify-content: center
+    font-weight: 500
+    font-size: 22px
+    color: rgba(214, 238, 244, 0.9)
+    position: relative
+    left: -1px
+  &__body
+    display: flex
+    // margin-top: 8px
+  &__pipeline
+    width: 64px
+    margin-top: 45px
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-between
+    height: 379px
+    span
+      display: flex
+  &__lessons
+    display: flex
+    flex-direction: column
+    width: calc( 100% - 64px )
+  &__lesson
+    width: 100%
+    height: 84px
+    background: #2C3F51
+    border-radius: 12px 0px 0px 12px
+    display: flex
+    color: #B3C9CE
+    margin-top: 8px
+    .wrapper_1
+      display: flex
+      flex-direction: column
+      align-self: center
+      margin-left: 8px
+      width: calc( 100% - 54px )
+      position: relative
+    .wrapper_2
+      display: flex
+
+.lesson
+  &__person
+    font-size: 12px
+    img
+      margin-right: 6px
+    span
+      position: absolute
+      width: 206px
+  &__subject
+    height: 43px
+    font-size: 12px
+    display: flex
+    align-items: center
+    overflow: hidden
+    padding-right: 4px
+    img, svg
+      margin-right: 6px
+  &__room
+    font-size: 12px
+    img
+      margin-right: 6px
+  &__time
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    font-size: 16px
+    font-weight: 500
+    margin-right: 6px
+  &__type
+    background: #79CBBC
+    height: 100%
+    width: 8px
+    &_practice
+      background: #79CBBC
+    &_lab
+      background: #875FC0
+    &_active
+      background: #EB4985
+    &_lecture
+      background: #41C6F8
+    &_none
+      background: #cccccc
+
+  img
+    margin-right: 6px
+
+
+.pipeline
+  &__disable
+    height: 8px
+    width: 8px
+  &__wrapper
+    display: flex
+    position: relative
+    align-items: center
+    justify-content: center
+  &__line
+    position: absolute
+    top: 18px
+
+

@@ -13,25 +13,25 @@ const favorite = {
       Component: Favorite,
       title: "MOC-191",
       color: "#FADE00",
-      id: "1"
+      id: "0"
     },
     {
       Component: Favorite,
       title: "MOC-192",
       color: "#FADE00",
-      id: "2"
+      id: "1"
     },
     {
       Component: Favorite,
       title: "MOC-191",
       color: "#FADE00",
-      id: "1"
+      id: "0"
     },
     {
       Component: Favorite,
       title: "MOC-192",
       color: "#FADE00",
-      id: "2"
+      id: "1"
     }
   ]
 };
@@ -110,19 +110,21 @@ export default class MainScreen extends Component {
       <div className="main-wrapper">
         <div className="main-wrapper__author">@dimweb</div>
         <MenuBurger />
+
+        <ItemContainer title={another.title} components={another.components} />
         <ItemContainer
-          title={favorite.title}
-          components={favorite.components}
+          title={homework.title}
+          components={homework.components}
         />
+
         <ItemContainer
           title={institute.title}
           components={institute.components}
         />
         <ItemContainer
-          title={homework.title}
-          components={homework.components}
+          title={favorite.title}
+          components={favorite.components}
         />
-        <ItemContainer title={another.title} components={another.components} />
       </div>
     );
   }

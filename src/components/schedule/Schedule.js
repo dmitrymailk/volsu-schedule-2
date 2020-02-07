@@ -516,7 +516,7 @@ export default class Schedule extends Component {
               >
                 <path
                   d="M9 1L1 9L9 17"
-                  stroke="#333333"
+                  stroke="#B2C6CB"
                   strokeWidth={2}
                   strokeLinecap="round"
                   strokeLinejoin="round"

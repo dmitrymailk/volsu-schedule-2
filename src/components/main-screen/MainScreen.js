@@ -14,25 +14,25 @@ const favorite = {
       title: "MOC-191",
       color: "#FADE00",
       id: "0"
-    },
-    {
-      Component: Favorite,
-      title: "MOC-192",
-      color: "#FADE00",
-      id: "1"
-    },
-    {
-      Component: Favorite,
-      title: "MOC-191",
-      color: "#FADE00",
-      id: "0"
-    },
-    {
-      Component: Favorite,
-      title: "MOC-192",
-      color: "#FADE00",
-      id: "1"
     }
+    // {
+    //   Component: Favorite,
+    //   title: "MOC-192",
+    //   color: "#FADE00",
+    //   id: "1"
+    // },
+    // {
+    //   Component: Favorite,
+    //   title: "MOC-191",
+    //   color: "#FADE00",
+    //   id: "0"
+    // },
+    // {
+    //   Component: Favorite,
+    //   title: "MOC-192",
+    //   color: "#FADE00",
+    //   id: "1"
+    // }
   ]
 };
 
@@ -43,22 +43,22 @@ const institute = {
       Component: InstituteItem,
       title: "ИМИТ",
       color: "#FADE00"
-    },
-    {
-      Component: InstituteItem,
-      title: "ИФМК",
-      color: "#FFAF38"
-    },
-    {
-      Component: InstituteItem,
-      title: "ИМИТ",
-      color: "#FADE00"
-    },
-    {
-      Component: InstituteItem,
-      title: "ИФМК",
-      color: "#FFAF38"
     }
+    // {
+    //   Component: InstituteItem,
+    //   title: "ИФМК",
+    //   color: "#FFAF38"
+    // },
+    // {
+    //   Component: InstituteItem,
+    //   title: "ИМИТ",
+    //   color: "#FADE00"
+    // },
+    // {
+    //   Component: InstituteItem,
+    //   title: "ИФМК",
+    //   color: "#FFAF38"
+    // }
   ]
 };
 
@@ -105,10 +105,24 @@ const another = {
 };
 
 export default class MainScreen extends Component {
+  startLesson = (e, target, link) => {
+    if (target) {
+      window.open(link);
+      e.preventDefault();
+    }
+    e.stopPropagation();
+  };
   render() {
     return (
       <div className="main-wrapper">
-        <div className="main-wrapper__author">@dimweb</div>
+        <a
+          className="main-wrapper__author"
+          to=""
+          target="_blank"
+          onClick={e => this.startLesson(e, true, "https://vk.com/dimweb")}
+        >
+          @dimweb
+        </a>
         <MenuBurger />
 
         <ItemContainer title={another.title} components={another.components} />

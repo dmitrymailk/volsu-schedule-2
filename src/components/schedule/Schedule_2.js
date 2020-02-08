@@ -1,15 +1,27 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import database from "./database";
-let pure_circle =
-  "http://web-citizen.ru/game-is-work/schedule/api/pure_circle.svg";
-let line = "http://web-citizen.ru/game-is-work/schedule/api/line.svg";
+import pure_circle from "../../img/minified/pure_circle.svg";
+import personi from "../../img/minified/1.svg";
+import booki from "../../img/minified/2.svg";
+import roomi from "../../img/minified/3.svg";
+import line from "../../img/minified/line.svg";
+import check from "../../img/minified/check.svg";
 export default class Schedule_2 extends Component {
   constructor() {
     super();
     this.state = {
       day: false
     };
+  }
+
+  componentDidMount() {
+    this.getLesson();
+    this.changePointer();
+  }
+
+  componentDidUpdate() {
+    this.changePointer();
   }
 
   getToday = () => {
@@ -38,6 +50,94 @@ export default class Schedule_2 extends Component {
         return 0;
       default:
         return 0;
+    }
+  };
+
+  getLesson = () => {
+    let d = new Date();
+    let h = d.getHours();
+    let m = d.getMinutes();
+    let toM = (h, m) => h * 60 + m;
+
+    let lessons = [510, 610, 720, 820, 920];
+    let currentlesson = 0;
+    let currentTime = toM(h, m);
+    while (currentTime >= lessons[currentlesson]) {
+      currentlesson++;
+    }
+    // console.log("Current lesson", currentlesson);
+    return currentlesson;
+  };
+
+  changePointer = () => {
+    console.log("Change", this.getLesson());
+    let d = new Date();
+    let h = d.getHours();
+    let m = d.getMinutes();
+    let toM = (h, m) => h * 60 + m;
+    let lessons = [600, 700, 810, 910, 1000];
+    let currentLesson = this.getLesson() - 1;
+    let currentTime = toM(h, m);
+    let today = this.state.day ? this.getToday() : 0;
+    let todayTop = 520 * today;
+
+    if (lessons[currentLesson] > currentTime) {
+      let percent =
+        (toM(1, 30) - lessons[currentLesson] + currentTime) / toM(1, 30);
+      const heBlock = 94;
+      let pointerMargin = heBlock * currentLesson + percent * 84 + 55;
+      document.querySelector(
+        ".schedule__pointer"
+      ).style.top = `${pointerMargin + todayTop}px`;
+      // debugger;
+    } else {
+      document.querySelector(".schedule__pointer").style.top = `${92 *
+        this.getLesson() +
+        todayTop +
+        53}px`;
+      if (currentTime > toM(16, 40)) {
+        document.querySelector(".schedule__pointer").style.display = "none";
+      }
+    }
+
+    // console.log("Current lesson", currentlesson);
+  };
+
+  weekType = () => {
+    let weeks = [
+      "2020-02-03",
+      "2020-02-10",
+      "2020-02-17",
+      "2020-02-24",
+      "2020-03-02",
+      "2020-03-09",
+      "2020-03-16",
+      "2020-03-23",
+      "2020-03-30",
+      "2020-04-06",
+      "2020-04-13",
+      "2020-04-20",
+      "2020-04-27",
+      "2020-05-04",
+      "2020-05-11",
+      "2020-05-18",
+      "2020-05-25",
+      "2020-06-01",
+      "2020-06-08",
+      "2020-06-15",
+      "2020-06-22",
+      "2020-06-29"
+    ];
+
+    let currentDate = new Date();
+    let i = 0;
+    while (new Date(weeks[i]) < currentDate) {
+      i++;
+    }
+    if (i - (1 % 2) == 0) {
+      return "- числитель";
+    } else {
+      return "- знаменатель";
     }
   };
 
@@ -72,7 +172,9 @@ export default class Schedule_2 extends Component {
                 />
               </svg>
             </div>
-            <div className="returning-header__title">{data.group}</div>
+            <div className="returning-header__title">
+              {data.group} {this.weekType()}
+            </div>
           </div>
         </Link>
         <div className="schedule__menu">
@@ -132,7 +234,7 @@ export default class Schedule_2 extends Component {
             className={`schedule__controls-button schedule__controls-button_${
               day ? "disable" : "active"
             }`}
-            onClick={() => this.setState({ day: false })}
+            onClick={() => (day ? this.setState({ day: false }) : null)}
           >
             Сегодня
           </div>
@@ -140,20 +242,32 @@ export default class Schedule_2 extends Component {
             className={`schedule__controls-button schedule__controls-button_${
               !day ? "disable" : "active"
             }`}
-            onClick={() => this.setState({ day: true })}
+            onClick={() => (!day ? this.setState({ day: true }) : null)}
           >
             Неделя
           </div>
         </div>
         <div className="schedule__week">
+          <div className="schedule__pointer"></div>
           {day ? (
-            data.content.map((item, i) => (
-              <Day name={item.name} lessons={item.lessons} key={i} />
-            ))
+            data.content.map((item, i) => {
+              let light = today == i ? true : false;
+              return (
+                <Day
+                  name={item.name}
+                  lessons={item.lessons}
+                  key={new Date().getTime()}
+                  getLesson={this.getLesson}
+                  light={light}
+                />
+              );
+            })
           ) : (
             <Day
               name={data.content[today].name}
               lessons={data.content[today].lessons}
+              getLesson={this.getLesson}
+              light={true}
             />
           )}
         </div>
@@ -173,6 +287,10 @@ class Lesson extends Component {
         return "lesson__type_active";
       case 3:
         return "lesson__type_lecture";
+      case 4:
+        return "lesson__type_none";
+      default:
+        return "lesson__type_none";
     }
   };
 
@@ -182,15 +300,21 @@ class Lesson extends Component {
       <div className="day__lesson">
         <div className="wrapper_1">
           <div className="lesson__person">
-            <img src="http://web-citizen.ru/game-is-work/schedule/api/1.svg" />
+            <img alt="" src={personi} />
             <span>{person}</span>
           </div>
           <div className="lesson__subject">
-            <img src="http://web-citizen.ru/game-is-work/schedule/api/2.svg" />
+            <img
+              alt=""
+              src="http://web-citizen.ru/game-is-work/schedule/api/2.svg"
+            />
             {name}
           </div>
           <div className="lesson__room">
-            <img src="http://web-citizen.ru/game-is-work/schedule/api/3.svg" />
+            <img
+              alt=""
+              src="http://web-citizen.ru/game-is-work/schedule/api/3.svg"
+            />
             {room}
           </div>
         </div>
@@ -209,23 +333,19 @@ class Lesson extends Component {
 
 class Day extends Component {
   render() {
-    let { name, lessons } = this.props;
+    let { name, lessons, getLesson, light } = this.props;
     return (
       <div className="day">
         <div className="day__title">{name}</div>
         <div className="day__body">
           <div className="day__pipeline">
-            {[1, 2, 3, 4].map(item => {
-              return (
-                <div className="pipeline__wrapper">
-                  <img className="pipleline__disable" src={pure_circle} />
-                  <img className="pipeline__line" src={line} alt="" />
-                </div>
+            {[1, 2, 3, 4, 5].map(item => {
+              return item <= getLesson() && light ? (
+                <PipelineItem active={true} />
+              ) : (
+                <PipelineItem active={false} />
               );
             })}
-            <div className="pipeline__wrapper">
-              <img className="pipleline__disable" src={pure_circle} />
-            </div>
           </div>
           <div className="day__lessons">
             {lessons.map(item => {
@@ -245,5 +365,34 @@ class Day extends Component {
         </div>
       </div>
     );
+  }
+}
+
+class PipelineItem extends Component {
+  render() {
+    let { active } = this.props;
+    if (active) {
+      return (
+        <div className="pipeline__wrapper">
+          <div className="pipeline__active">
+            <img alt="" className="" src={check} />
+          </div>
+          <div className="pipeline__line">
+            <img alt="" src={line} />
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="pipeline__wrapper">
+          <div className="pipeline__disable">
+            <img alt="" className="" src={pure_circle} />
+          </div>
+          <div className="pipeline__line">
+            <img alt="" src={line} />
+          </div>
+        </div>
+      );
+    }
   }
 }

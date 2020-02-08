@@ -2,7 +2,7 @@
   display: flex
   flex-direction: column
   width: 100%
-  overflow-x: hidden
+  overflow: hidden
   max-width: 768px
   position: relative
   min-height: 520px
@@ -94,6 +94,18 @@
     display: flex
     color: #D6EEF4
     flex-direction: column
+    position: relative
+  &__pointer
+    position: absolute
+    width: 24px
+    height: 24px
+    display: flex
+    background: #FF6363
+    transform: rotate(45deg)
+    left: -22px
+    top: 53px
+    border-radius: 1px
+    z-index: 20
 
 
 .returning-header
@@ -112,18 +124,7 @@
     font-size: 22px
     line-height: 26px
     color: #B2C6CB
-
-.table
-  &__pointer
-    position: absolute
-    width: 24px
-    height: 24px
-    display: flex
-    background: #FF6363
-    transform: rotate(45deg)
-    left: -20px
-    top: -12px
-    border-radius: 1px
+  
 
 
 .day
@@ -148,7 +149,7 @@
     left: -1px
   &__body
     display: flex
-    // margin-top: 8px
+    
   &__pipeline
     width: 64px
     margin-top: 45px
@@ -159,6 +160,11 @@
     height: 379px
     span
       display: flex
+    &:last-child
+      background: #cccccc
+      margin: 100px
+      .pipeline__line
+        display: none
   &__lessons
     display: flex
     flex-direction: column
@@ -233,6 +239,12 @@
   &__disable
     height: 8px
     width: 8px
+    position: relative
+    display: flex
+    align-items: center
+    justify-content: center
+    img
+      position: absolute
   &__wrapper
     display: flex
     position: relative
@@ -241,5 +253,20 @@
   &__line
     position: absolute
     top: 18px
+  &__active
+    z-index: 2
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 8px
+    height: 8px
+    img
+      position: absolute
+  
+      
+.pipeline__wrapper:last-child
+  .pipeline__line
+    display: none
+
 
 

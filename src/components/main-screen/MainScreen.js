@@ -14,13 +14,13 @@ const favorite = {
       title: "MOC-191",
       color: "#FADE00",
       id: "0"
+    },
+    {
+      Component: Favorite,
+      title: "ФЛб-191",
+      color: "#FFAF38",
+      id: "1"
     }
-    // {
-    //   Component: Favorite,
-    //   title: "MOC-192",
-    //   color: "#FADE00",
-    //   id: "1"
-    // },
     // {
     //   Component: Favorite,
     //   title: "MOC-191",

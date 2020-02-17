@@ -47,7 +47,7 @@ export default class Schedule_2 extends Component {
       case "СБ":
         return 5;
       case "ВС":
-        return 0;
+        return 6;
       default:
         return 0;
     }
@@ -131,10 +131,11 @@ export default class Schedule_2 extends Component {
 
     let currentDate = new Date();
     let i = 0;
-    while (new Date(weeks[i]) < currentDate) {
+    while (new Date(weeks[i]) <= currentDate) {
       i++;
+      // console.log(new Date(weeks[i]), currentDate, i);
     }
-    if (i - (1 % 2) == 0) {
+    if ((i - 1) % 2 == 0) {
       return "- числитель";
     } else {
       return "- знаменатель";
@@ -304,17 +305,11 @@ class Lesson extends Component {
             <span>{person}</span>
           </div>
           <div className="lesson__subject">
-            <img
-              alt=""
-              src="http://web-citizen.ru/game-is-work/schedule/api/2.svg"
-            />
+            <img alt="" src={booki} />
             {name}
           </div>
           <div className="lesson__room">
-            <img
-              alt=""
-              src="http://web-citizen.ru/game-is-work/schedule/api/3.svg"
-            />
+            <img alt="" src={roomi} />
             {room}
           </div>
         </div>

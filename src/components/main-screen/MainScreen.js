@@ -7,20 +7,20 @@ import AnotherProducts from "../another-products/AnotherProducts";
 import MenuBurger from "../menu-burger/MenuBurger";
 
 const favorite = {
-  title: "Избранное",
+  title: "Расписание",
   components: [
     {
       Component: Favorite,
       title: "MOC-191",
       color: "#FADE00",
-      id: "0"
+      id: "0",
     },
-    {
-      Component: Favorite,
-      title: "ФЛб-191",
-      color: "#FFAF38",
-      id: "1"
-    }
+    // {
+    //   Component: Favorite,
+    //   title: "ФЛб-191",
+    //   color: "#FFAF38",
+    //   id: "1"
+    // }
     // {
     //   Component: Favorite,
     //   title: "MOC-191",
@@ -33,17 +33,17 @@ const favorite = {
     //   color: "#FADE00",
     //   id: "1"
     // }
-  ]
+  ],
 };
 
 const institute = {
-  title: "Институты",
+  title: "",
   components: [
     {
       Component: InstituteItem,
-      title: "ИМИТ",
-      color: "#FADE00"
-    }
+      title: "",
+      color: "#1B2126",
+    },
     // {
     //   Component: InstituteItem,
     //   title: "ИФМК",
@@ -59,37 +59,37 @@ const institute = {
     //   title: "ИФМК",
     //   color: "#FFAF38"
     // }
-  ]
+  ],
 };
 
 const homework = {
-  title: "Домашнее задание",
+  title: "",
   components: [
-    {
-      Component: HomeworkItem,
-      title: "Алгебра и теория чисел"
-    },
-    {
-      Component: HomeworkItem,
-      title: "Геометрия и топология"
-    },
-    {
-      Component: HomeworkItem,
-      title: "Русский язык"
-    },
-    {
-      Component: HomeworkItem,
-      title: "Алгебра и теория чисел"
-    },
-    {
-      Component: HomeworkItem,
-      title: "Геометрия и топология"
-    },
-    {
-      Component: HomeworkItem,
-      title: "Русский язык"
-    }
-  ]
+    // {
+    //   Component: HomeworkItem,
+    //   title: "Алгебра и теория чисел",
+    // },
+    // {
+    //   Component: HomeworkItem,
+    //   title: "Геометрия и топология",
+    // },
+    // {
+    //   Component: HomeworkItem,
+    //   title: "Русский язык",
+    // },
+    // {
+    //   Component: HomeworkItem,
+    //   title: "Алгебра и теория чисел",
+    // },
+    // {
+    //   Component: HomeworkItem,
+    //   title: "Геометрия и топология",
+    // },
+    // {
+    //   Component: HomeworkItem,
+    //   title: "Русский язык",
+    // },
+  ],
 };
 
 const another = {
@@ -99,9 +99,17 @@ const another = {
       Component: AnotherProducts,
       title: "Лекториум",
       backColor: "#264E70",
-      textColor: "#FFF"
-    }
-  ]
+      textColor: "#FFF",
+      link: "https://test-new-lectorium.firebaseapp.com/",
+    },
+    // {
+    //   Component: AnotherProducts,
+    //   title: "Lingvo Gap",
+    //   backColor: "#2F964D",
+    //   textColor: "#FFF",
+    //   link: "https://lingvo-gap.com/",
+    // },
+  ],
 };
 
 export default class MainScreen extends Component {
@@ -119,11 +127,11 @@ export default class MainScreen extends Component {
           className="main-wrapper__author"
           to=""
           target="_blank"
-          onClick={e => this.startLesson(e, true, "https://vk.com/dimweb")}
+          onClick={(e) => this.startLesson(e, true, "https://vk.com/dimweb")}
         >
           @dimweb
         </a>
-        <MenuBurger />
+        {/* <MenuBurger /> */}
 
         <ItemContainer title={another.title} components={another.components} />
         <ItemContainer

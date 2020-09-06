@@ -11,7 +11,7 @@ export default class Schedule_2 extends Component {
   constructor() {
     super();
     this.state = {
-      day: false
+      day: false,
     };
   }
 
@@ -25,7 +25,7 @@ export default class Schedule_2 extends Component {
   }
 
   getToday = () => {
-    let getWeekDay = date => {
+    let getWeekDay = (date) => {
       let days = ["ВС", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"];
       return days[date.getDay()];
     };
@@ -86,15 +86,14 @@ export default class Schedule_2 extends Component {
         (toM(1, 30) - lessons[currentLesson] + currentTime) / toM(1, 30);
       const heBlock = 94;
       let pointerMargin = heBlock * currentLesson + percent * 84 + 55;
-      document.querySelector(
-        ".schedule__pointer"
-      ).style.top = `${pointerMargin + todayTop}px`;
+      document.querySelector(".schedule__pointer").style.top = `${
+        pointerMargin + todayTop
+      }px`;
       // debugger;
     } else {
-      document.querySelector(".schedule__pointer").style.top = `${92 *
-        this.getLesson() +
-        todayTop +
-        53}px`;
+      document.querySelector(".schedule__pointer").style.top = `${
+        92 * this.getLesson() + todayTop + 53
+      }px`;
       if (currentTime > toM(16, 40)) {
         document.querySelector(".schedule__pointer").style.display = "none";
       }
@@ -105,28 +104,24 @@ export default class Schedule_2 extends Component {
 
   weekType = () => {
     let weeks = [
-      "2020-02-03",
-      "2020-02-10",
-      "2020-02-17",
-      "2020-02-24",
-      "2020-03-02",
-      "2020-03-09",
-      "2020-03-16",
-      "2020-03-23",
-      "2020-03-30",
-      "2020-04-06",
-      "2020-04-13",
-      "2020-04-20",
-      "2020-04-27",
-      "2020-05-04",
-      "2020-05-11",
-      "2020-05-18",
-      "2020-05-25",
-      "2020-06-01",
-      "2020-06-08",
-      "2020-06-15",
-      "2020-06-22",
-      "2020-06-29"
+      "2020-09-05",
+      "2020-09-12",
+      "2020-09-19",
+      "2020-09-26",
+      "2020-10-03",
+      "2020-10-10",
+      "2020-10-17",
+      "2020-10-24",
+      "2020-10-31",
+      "2020-11-07",
+      "2020-11-14",
+      "2020-11-21",
+      "2020-11-28",
+      "2020-12-05",
+      "2020-12-12",
+      "2020-12-19",
+      "2020-12-26",
+      "2020-12-31",
     ];
 
     let currentDate = new Date();
@@ -145,8 +140,8 @@ export default class Schedule_2 extends Component {
   render() {
     let {
       match: {
-        params: { id }
-      }
+        params: { id },
+      },
     } = this.props;
 
     let data = database[+id];
@@ -179,13 +174,13 @@ export default class Schedule_2 extends Component {
           </div>
         </Link>
         <div className="schedule__menu">
-          <div className="schedule__menu-switch">
+          {/* <div className="schedule__menu-switch">
             <div className="container">
               <span />
               <span />
               <span />
             </div>
-          </div>
+          </div> */}
           <div className="schedule__menu-list schedule__menu-list_close">
             <span>
               В избранное{" "}
@@ -278,7 +273,7 @@ export default class Schedule_2 extends Component {
 }
 
 class Lesson extends Component {
-  convertType = type => {
+  convertType = (type) => {
     switch (type) {
       case 0:
         return "lesson__type_practice";
@@ -334,7 +329,7 @@ class Day extends Component {
         <div className="day__title">{name}</div>
         <div className="day__body">
           <div className="day__pipeline">
-            {[1, 2, 3, 4, 5].map(item => {
+            {[1, 2, 3, 4, 5].map((item) => {
               return item <= getLesson() && light ? (
                 <PipelineItem active={true} />
               ) : (
@@ -343,7 +338,7 @@ class Day extends Component {
             })}
           </div>
           <div className="day__lessons">
-            {lessons.map(item => {
+            {lessons.map((item) => {
               let { start, end, name, person, room, type } = item;
               return (
                 <Lesson

@@ -11,23 +11,17 @@ export default class AnotherProducts extends Component {
   };
 
   render() {
-    let { title, backColor, textColor } = this.props;
+    let { title, backColor, textColor, link } = this.props;
     let style = {
       background: backColor,
-      color: textColor
+      color: textColor,
     };
 
     return (
       <Link
         to=""
         target="_blank"
-        onClick={e =>
-          this.startLesson(
-            e,
-            true,
-            "https://test-new-lectorium.firebaseapp.com/"
-          )
-        }
+        onClick={(e) => this.startLesson(e, true, link)}
       >
         <div className="another-products another-products_color" style={style}>
           <div className="another-products__title">{title}</div>
